@@ -1,15 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>NexZ Token (NEXZ) - BNB Chain</title>
-  <meta name="description" content="NexZ (NEXZ) - Community driven BEP-20 token on BNB Chain. 0% Tax, LP Locked, Verified Contract."/>
-  <meta property="og:title" content="NexZ Token (NEXZ)"/>
-  <meta property="og:description" content="0% Tax | LP Locked 1 Year | Community Driven | BNB Chain"/>
+  <title>NexZ Token (NEXZ) - BNB Chain | 0% Tax | LP Locked</title>
+  <meta name="description" content="NexZ (NEXZ) - Community driven BEP-20 token on BNB Chain. 0% Tax, LP Locked 1 Year, Verified Contract. Buy on PancakeSwap."/>
+  <meta property="og:title" content="NexZ Token (NEXZ) - BNB Chain"/>
+  <meta property="og:description" content="0% Tax | LP Locked 1 Year | Community Driven | Airdrop Live!"/>
   <meta property="og:image" content="logo.png"/>
+  <meta property="og:url" content="https://starkintustry1115-lab.github.io/nexz/"/>
+  <meta name="twitter:card" content="summary_large_image"/>
+  <meta name="twitter:site" content="@BNBNEXZ"/>
   <link rel="icon" href="logo.png"/>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"/>
   <style>
     :root {
       --primary: #00d4ff;
@@ -20,436 +23,309 @@
       --card2: #111130;
       --text: #e0e0ff;
       --green: #00ff88;
+      --gold: #ffd700;
     }
     * { margin:0; padding:0; box-sizing:border-box; }
+    html { scroll-behavior: smooth; }
     body {
       font-family: 'Inter', sans-serif;
       background: var(--bg);
       color: var(--text);
       overflow-x: hidden;
     }
-
-    /* ANIMATED BACKGROUND */
     body::before {
       content:'';
       position:fixed;
       top:0; left:0; right:0; bottom:0;
-      background: radial-gradient(ellipse at 20% 50%, rgba(123,47,255,0.15) 0%, transparent 50%),
-                  radial-gradient(ellipse at 80% 20%, rgba(0,212,255,0.1) 0%, transparent 50%);
+      background: radial-gradient(ellipse at 20% 50%, rgba(123,47,255,0.12) 0%, transparent 50%),
+                  radial-gradient(ellipse at 80% 20%, rgba(0,212,255,0.08) 0%, transparent 50%);
       pointer-events:none;
       z-index:0;
     }
 
     /* NAVBAR */
     nav {
-      position: fixed;
-      top:0; left:0; right:0;
-      z-index:100;
-      background: rgba(5,5,16,0.9);
+      position:fixed; top:0; left:0; right:0;
+      z-index:1000;
+      background: rgba(5,5,16,0.95);
       backdrop-filter: blur(20px);
-      border-bottom: 1px solid rgba(0,212,255,0.1);
-      padding: 14px 24px;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
+      border-bottom: 1px solid rgba(0,212,255,0.15);
+      padding: 0 20px;
     }
-    .nav-logo { display:flex; align-items:center; gap:10px; }
+    .nav-inner {
+      max-width:1200px; margin:0 auto;
+      display:flex; align-items:center; justify-content:space-between;
+      height:64px;
+    }
+    .nav-logo { display:flex; align-items:center; gap:10px; text-decoration:none; }
     .nav-logo img { width:36px; height:36px; border-radius:50%; }
-    .nav-logo span { font-weight:800; font-size:1.2rem; color:#fff; }
+    .nav-logo span { font-size:1.2rem; font-weight:800; color:var(--primary); }
     .nav-links { display:flex; gap:24px; align-items:center; }
-    .nav-links a {
-      color: var(--text);
-      text-decoration:none;
-      font-size:0.9rem;
-      font-weight:600;
-      transition:color 0.2s;
-    }
-    .nav-links a:hover { color: var(--primary); }
+    .nav-links a { color:#aaa; text-decoration:none; font-size:0.9rem; font-weight:500; transition:color 0.2s; }
+    .nav-links a:hover { color:var(--primary); }
     .nav-buy {
-      background: linear-gradient(135deg, var(--secondary), var(--primary));
-      color:#fff !important;
-      padding: 8px 20px;
-      border-radius:20px;
-      font-weight:700 !important;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color:#fff !important; padding:8px 20px; border-radius:50px; font-weight:700 !important;
     }
+    .nav-buy:hover { opacity:0.9; }
+
+    /* TICKER BAR */
+    .ticker-bar {
+      margin-top:64px;
+      background: linear-gradient(90deg, #0d0d2b, #111130, #0d0d2b);
+      border-bottom: 1px solid rgba(0,212,255,0.1);
+      padding: 10px 0; overflow:hidden;
+    }
+    .ticker-content {
+      display:flex; gap:60px; white-space:nowrap;
+      animation: ticker 30s linear infinite;
+    }
+    .ticker-item { display:flex; align-items:center; gap:8px; font-size:0.85rem; }
+    .ticker-item .label { color:#666; }
+    .ticker-item .value { color:var(--primary); font-weight:700; }
+    .ticker-item .green { color:var(--green); }
+    @keyframes ticker { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
 
     /* HERO */
     .hero {
-      min-height: 100vh;
-      display:flex;
-      flex-direction:column;
-      align-items:center;
-      justify-content:center;
-      text-align:center;
-      padding: 100px 24px 60px;
-      position:relative;
-      z-index:1;
+      min-height:90vh; display:flex; align-items:center; justify-content:center;
+      text-align:center; padding:60px 20px; position:relative; z-index:1;
     }
+    .hero-content { max-width:800px; }
     .hero-badge {
-      background: rgba(0,212,255,0.1);
-      border: 1px solid rgba(0,212,255,0.3);
-      color: var(--primary);
-      padding: 6px 16px;
-      border-radius:20px;
-      font-size:0.8rem;
-      font-weight:700;
-      margin-bottom:24px;
-      display:inline-block;
-      animation: pulse 2s infinite;
+      display:inline-flex; align-items:center; gap:8px;
+      background:rgba(0,212,255,0.1); border:1px solid rgba(0,212,255,0.3);
+      border-radius:50px; padding:8px 20px; margin-bottom:28px;
+      font-size:0.9rem; color:var(--primary);
     }
-    @keyframes pulse {
-      0%,100% { opacity:1; }
-      50% { opacity:0.6; }
-    }
-    .hero-logo {
-      width:120px; height:120px;
-      border-radius:50%;
-      border: 3px solid var(--primary);
-      box-shadow: 0 0 40px rgba(0,212,255,0.4);
-      margin-bottom:24px;
-      animation: float 3s ease-in-out infinite;
-    }
-    @keyframes float {
-      0%,100% { transform:translateY(0); }
-      50% { transform:translateY(-10px); }
-    }
+    .hero-badge .dot { width:8px; height:8px; border-radius:50%; background:var(--green); animation:pulse 2s infinite; }
+    @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(1.3)} }
     .hero h1 {
-      font-size:clamp(2.5rem,6vw,5rem);
-      font-weight:900;
+      font-size:clamp(2.5rem, 6vw, 5rem); font-weight:900; line-height:1.1;
       background: linear-gradient(135deg, #fff 0%, var(--primary) 50%, var(--secondary) 100%);
-      -webkit-background-clip:text;
-      -webkit-text-fill-color:transparent;
-      background-clip:text;
-      margin-bottom:16px;
+      -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+      margin-bottom:20px;
     }
-    .hero p {
-      font-size:clamp(1rem,2vw,1.3rem);
-      color:#8888aa;
-      max-width:600px;
-      line-height:1.6;
-      margin-bottom:40px;
-    }
-    .hero-buttons { display:flex; gap:16px; flex-wrap:wrap; justify-content:center; }
+    .hero p { font-size:1.2rem; color:#888; margin-bottom:40px; line-height:1.7; }
+    .hero-btns { display:flex; gap:16px; justify-content:center; flex-wrap:wrap; margin-bottom:50px; }
     .btn-primary {
-      background: linear-gradient(135deg, var(--secondary), var(--primary));
-      color:#fff;
-      padding:16px 36px;
-      border-radius:50px;
-      font-size:1.1rem;
-      font-weight:700;
-      text-decoration:none;
-      border:none;
-      cursor:pointer;
-      transition:transform 0.2s, box-shadow 0.2s;
-      box-shadow: 0 8px 32px rgba(123,47,255,0.4);
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color:#fff; padding:16px 36px; border-radius:50px; font-weight:800;
+      font-size:1.1rem; text-decoration:none; transition:all 0.3s;
+      box-shadow: 0 0 30px rgba(0,212,255,0.3);
     }
-    .btn-primary:hover { transform:translateY(-3px); box-shadow:0 12px 40px rgba(123,47,255,0.6); }
+    .btn-primary:hover { transform:translateY(-2px); box-shadow:0 0 50px rgba(0,212,255,0.5); }
     .btn-secondary {
-      background: transparent;
-      color:#fff;
-      padding:16px 36px;
-      border-radius:50px;
-      font-size:1.1rem;
-      font-weight:700;
-      text-decoration:none;
-      border: 2px solid rgba(0,212,255,0.5);
-      cursor:pointer;
-      transition:all 0.2s;
+      background:transparent; color:var(--primary); padding:16px 36px;
+      border-radius:50px; font-weight:700; font-size:1.1rem; text-decoration:none;
+      border:2px solid var(--primary); transition:all 0.3s;
     }
-    .btn-secondary:hover { border-color:var(--primary); color:var(--primary); }
-
-    /* STATS TICKER */
-    .stats-bar {
-      background: var(--card);
-      border-top: 1px solid rgba(0,212,255,0.1);
-      border-bottom: 1px solid rgba(0,212,255,0.1);
-      padding:16px 24px;
-      display:flex;
-      justify-content:center;
-      gap:48px;
-      flex-wrap:wrap;
-      position:relative;
-      z-index:1;
-    }
-    .stat-item { text-align:center; }
-    .stat-label { font-size:0.75rem; color:#666; text-transform:uppercase; letter-spacing:1px; }
-    .stat-value { font-size:1.1rem; font-weight:800; color:var(--primary); margin-top:4px; }
-    .stat-value.green { color:var(--green); }
-
-    /* CONTRACT */
-    .contract-section {
-      padding:40px 24px;
-      text-align:center;
-      position:relative;
-      z-index:1;
-    }
+    .btn-secondary:hover { background:rgba(0,212,255,0.1); }
     .contract-box {
-      display:inline-flex;
-      align-items:center;
-      gap:12px;
-      background:var(--card);
-      border:1px solid rgba(0,212,255,0.2);
-      border-radius:12px;
-      padding:14px 20px;
-      max-width:100%;
+      display:inline-flex; align-items:center; gap:12px;
+      background:var(--card); border:1px solid rgba(0,212,255,0.2);
+      border-radius:12px; padding:12px 20px; margin:0 auto;
     }
-    .contract-box span {
-      font-family:monospace;
-      font-size:clamp(0.7rem,1.5vw,0.9rem);
-      color:var(--primary);
-      word-break:break-all;
-    }
+    .contract-box code { font-size:0.78rem; color:var(--primary); word-break:break-all; }
     .copy-btn {
-      background:rgba(0,212,255,0.15);
-      border:1px solid rgba(0,212,255,0.3);
-      color:var(--primary);
-      padding:6px 14px;
-      border-radius:8px;
-      cursor:pointer;
-      font-size:0.8rem;
-      font-weight:600;
-      white-space:nowrap;
+      background:rgba(0,212,255,0.1); border:1px solid var(--primary);
+      color:var(--primary); padding:6px 14px; border-radius:8px;
+      cursor:pointer; font-size:0.8rem; font-weight:600; white-space:nowrap;
       transition:all 0.2s;
     }
-    .copy-btn:hover { background:rgba(0,212,255,0.3); }
+    .copy-btn:hover { background:rgba(0,212,255,0.2); }
 
-    /* SECTIONS */
-    section { padding:80px 24px; position:relative; z-index:1; }
+    /* STATS ROW */
+    .stats-row {
+      display:flex; justify-content:center; flex-wrap:wrap; gap:20px;
+      padding: 50px 20px; position:relative; z-index:1;
+    }
+    .stat-card {
+      background:var(--card); border:1px solid rgba(0,212,255,0.1);
+      border-radius:16px; padding:24px 32px; text-align:center; min-width:180px;
+      transition: all 0.3s;
+    }
+    .stat-card:hover { border-color:var(--primary); transform:translateY(-4px); }
+    .stat-card .num { font-size:1.8rem; font-weight:900; color:var(--primary); }
+    .stat-card .lbl { font-size:0.85rem; color:#666; margin-top:4px; }
+
+    section { position:relative; z-index:1; }
+
+    /* SECTION STYLES */
+    .section-wrap { max-width:1200px; margin:0 auto; padding:80px 20px; }
     .section-title {
-      text-align:center;
-      font-size:clamp(1.8rem,4vw,3rem);
-      font-weight:800;
-      margin-bottom:16px;
+      text-align:center; font-size:2rem; font-weight:800;
+      color:#fff; margin-bottom:12px;
     }
     .section-title span { color:var(--primary); }
-    .section-subtitle {
-      text-align:center;
-      color:#666;
-      font-size:1rem;
-      margin-bottom:48px;
-    }
-    .container { max-width:1100px; margin:0 auto; }
+    .section-sub { text-align:center; color:#666; font-size:1rem; margin-bottom:50px; }
 
-    /* FEATURES */
-    .features-grid {
-      display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-      gap:24px;
+    /* LIVE CHART */
+    .chart-section { background:rgba(13,13,43,0.5); }
+    .chart-embed-wrap {
+      border-radius:16px; overflow:hidden;
+      border:1px solid rgba(0,212,255,0.15);
+      box-shadow: 0 0 40px rgba(0,212,255,0.1);
     }
+
+    /* FEATURES GRID */
+    .features-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:24px; }
     .feature-card {
-      background:var(--card);
-      border:1px solid rgba(255,255,255,0.05);
-      border-radius:20px;
-      padding:32px 24px;
-      text-align:center;
-      transition:transform 0.3s, border-color 0.3s;
+      background:var(--card); border:1px solid rgba(255,255,255,0.05);
+      border-radius:16px; padding:28px;
+      transition:all 0.3s;
     }
-    .feature-card:hover {
-      transform:translateY(-8px);
-      border-color:rgba(0,212,255,0.3);
-    }
+    .feature-card:hover { border-color:var(--primary); transform:translateY(-4px); }
     .feature-icon { font-size:2.5rem; margin-bottom:16px; }
-    .feature-card h3 { font-size:1.2rem; font-weight:700; margin-bottom:10px; color:#fff; }
-    .feature-card p { color:#666; font-size:0.9rem; line-height:1.6; }
+    .feature-card h3 { font-size:1.1rem; font-weight:700; color:#fff; margin-bottom:8px; }
+    .feature-card p { font-size:0.9rem; color:#666; line-height:1.6; }
 
     /* TOKENOMICS */
-    .tokenomics-grid {
-      display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
-      gap:20px;
+    .tokenomics-section { background:rgba(0,0,0,0.3); }
+    .tokenomics-img {
+      width:100%; max-width:900px; margin:0 auto; display:block;
+      border-radius:16px; border:1px solid rgba(0,212,255,0.15);
     }
-    .token-card {
-      background:var(--card);
-      border:1px solid rgba(255,255,255,0.05);
-      border-radius:16px;
-      padding:28px 20px;
-      text-align:center;
-    }
-    .token-card .number {
-      font-size:2rem;
-      font-weight:900;
-      background:linear-gradient(135deg,var(--primary),var(--secondary));
-      -webkit-background-clip:text;
-      -webkit-text-fill-color:transparent;
-      background-clip:text;
-    }
-    .token-card .label { color:#666; font-size:0.85rem; margin-top:8px; }
 
     /* AIRDROP */
     .airdrop-section {
-      background:linear-gradient(135deg,rgba(123,47,255,0.15),rgba(0,212,255,0.1));
-      border:1px solid rgba(0,212,255,0.2);
-      border-radius:24px;
-      padding:48px 32px;
-      text-align:center;
-      max-width:700px;
-      margin:0 auto;
+      background: linear-gradient(135deg, rgba(123,47,255,0.1) 0%, rgba(0,212,255,0.05) 100%);
+      border-top: 1px solid rgba(123,47,255,0.2);
+      border-bottom: 1px solid rgba(123,47,255,0.2);
     }
-    .airdrop-section h2 { font-size:2rem; font-weight:800; color:#fff; margin-bottom:16px; }
-    .airdrop-section p { color:#888; line-height:1.7; margin-bottom:24px; }
-    .airdrop-steps {
-      display:flex;
-      flex-direction:column;
-      gap:12px;
-      text-align:left;
-      margin-bottom:28px;
+    .airdrop-box {
+      background: linear-gradient(135deg, #0d0d2b, #111130);
+      border:2px solid var(--secondary); border-radius:24px; padding:50px;
+      text-align:center; max-width:800px; margin:0 auto;
     }
-    .airdrop-step {
-      display:flex;
-      align-items:center;
-      gap:12px;
-      background:rgba(255,255,255,0.03);
-      padding:12px 16px;
-      border-radius:10px;
+    .airdrop-box h2 { font-size:2.5rem; font-weight:900; color:var(--gold); margin-bottom:12px; }
+    .airdrop-box .prize { font-size:1.5rem; color:#fff; margin-bottom:30px; }
+    .steps-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:16px; margin:30px 0; }
+    .step-item {
+      background:rgba(0,0,0,0.3); border:1px solid rgba(0,212,255,0.2);
+      border-radius:12px; padding:16px; font-size:0.9rem; color:#ccc;
     }
-    .step-num {
-      width:28px; height:28px;
-      background:linear-gradient(135deg,var(--secondary),var(--primary));
-      border-radius:50%;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      font-weight:700;
-      font-size:0.8rem;
-      flex-shrink:0;
+    .step-num { font-size:1.5rem; font-weight:900; color:var(--primary); margin-bottom:6px; }
+    .countdown-wrap { display:flex; gap:20px; justify-content:center; margin:30px 0; flex-wrap:wrap; }
+    .count-box { text-align:center; }
+    .count-num {
+      background:var(--card); border:2px solid var(--secondary);
+      border-radius:12px; padding:16px 20px; min-width:70px;
+      font-size:2rem; font-weight:900; color:var(--primary); display:block;
     }
-
-    /* HOW TO BUY */
-    .buy-steps {
-      display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-      gap:24px;
-    }
-    .buy-step {
-      background:var(--card);
-      border:1px solid rgba(255,255,255,0.05);
-      border-radius:16px;
-      padding:28px 20px;
-      position:relative;
-    }
-    .buy-step-num {
-      position:absolute;
-      top:-16px;
-      left:20px;
-      width:32px;height:32px;
-      background:linear-gradient(135deg,var(--secondary),var(--primary));
-      border-radius:50%;
-      display:flex;align-items:center;justify-content:center;
-      font-weight:800;
-      font-size:0.9rem;
-    }
-    .buy-step h4 { font-size:1rem; font-weight:700; color:#fff; margin-bottom:8px; }
-    .buy-step p { color:#666; font-size:0.85rem; line-height:1.6; }
-
-    /* ROADMAP */
-    .roadmap { display:flex; flex-direction:column; gap:0; max-width:700px; margin:0 auto; }
-    .roadmap-item {
-      display:flex;
-      gap:24px;
-      position:relative;
-    }
-    .roadmap-item:not(:last-child)::after {
-      content:'';
-      position:absolute;
-      left:20px;
-      top:40px;
-      bottom:-40px;
-      width:2px;
-      background:linear-gradient(to bottom,var(--primary),var(--secondary));
-    }
-    .roadmap-dot {
-      width:40px;height:40px;
-      border-radius:50%;
-      background:linear-gradient(135deg,var(--secondary),var(--primary));
-      display:flex;align-items:center;justify-content:center;
-      font-size:1.2rem;
-      flex-shrink:0;
-      z-index:1;
-    }
-    .roadmap-content {
-      background:var(--card);
-      border:1px solid rgba(255,255,255,0.05);
-      border-radius:16px;
-      padding:20px;
-      flex:1;
-      margin-bottom:32px;
-    }
-    .roadmap-content h4 { font-size:1rem; font-weight:700; color:var(--primary); margin-bottom:8px; }
-    .roadmap-content ul { list-style:none; color:#888; font-size:0.85rem; line-height:2; }
-    .roadmap-content ul li::before { content:'✓ '; color:var(--green); }
-
-    /* SOCIAL */
-    .social-grid {
-      display:flex;
-      justify-content:center;
-      gap:20px;
-      flex-wrap:wrap;
-    }
-    .social-btn {
-      display:flex;
-      align-items:center;
-      gap:10px;
-      background:var(--card);
-      border:1px solid rgba(255,255,255,0.08);
-      border-radius:12px;
-      padding:14px 24px;
-      text-decoration:none;
-      color:#fff;
-      font-weight:600;
-      transition:all 0.2s;
-    }
-    .social-btn:hover {
-      transform:translateY(-4px);
-      border-color:var(--primary);
-      color:var(--primary);
-    }
-    .social-btn img { width:24px; height:24px; }
+    .count-lbl { font-size:0.75rem; color:#666; margin-top:6px; }
 
     /* SECURITY */
-    .security-grid {
-      display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
-      gap:16px;
+    .security-section { background:rgba(0,255,136,0.02); }
+    .security-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:20px; }
+    .sec-item {
+      background:var(--card); border:1px solid rgba(0,255,136,0.15);
+      border-radius:16px; padding:24px; text-align:center;
     }
-    .security-item {
-      background:var(--card);
-      border:1px solid rgba(0,255,136,0.1);
-      border-radius:12px;
-      padding:20px;
-      text-align:center;
+    .sec-item .check { font-size:2rem; margin-bottom:10px; }
+    .sec-item h4 { font-size:1rem; font-weight:700; color:#fff; margin-bottom:4px; }
+    .sec-item p { font-size:0.85rem; color:var(--green); font-weight:600; }
+    .sec-links { display:flex; gap:16px; justify-content:center; flex-wrap:wrap; margin-top:40px; }
+    .sec-link {
+      background:var(--card); border:1px solid rgba(0,212,255,0.2);
+      border-radius:12px; padding:14px 24px; text-decoration:none;
+      color:var(--primary); font-weight:600; font-size:0.9rem;
+      transition:all 0.2s;
     }
-    .security-item .check { font-size:2rem; margin-bottom:8px; }
-    .security-item h4 { font-size:0.9rem; font-weight:700; color:#fff; margin-bottom:4px; }
-    .security-item p { font-size:0.8rem; color:#666; }
+    .sec-link:hover { background:rgba(0,212,255,0.1); border-color:var(--primary); }
+
+    /* ROADMAP */
+    .roadmap-section { background:rgba(13,13,43,0.5); }
+    .roadmap { display:flex; flex-direction:column; gap:0; max-width:700px; margin:0 auto; position:relative; }
+    .roadmap::before {
+      content:''; position:absolute; left:26px; top:0; bottom:0;
+      width:2px; background:linear-gradient(to bottom, var(--primary), var(--secondary));
+    }
+    .roadmap-item { display:flex; gap:24px; padding:24px 0; }
+    .roadmap-dot {
+      width:54px; height:54px; border-radius:50%; flex-shrink:0;
+      background:var(--card); border:2px solid var(--primary);
+      display:flex; align-items:center; justify-content:center;
+      font-size:1.3rem; z-index:1;
+    }
+    .roadmap-dot.done { background:rgba(0,255,136,0.1); border-color:var(--green); }
+    .roadmap-content { padding-top:8px; }
+    .roadmap-content h4 { font-size:1rem; font-weight:700; color:var(--primary); margin-bottom:6px; }
+    .roadmap-content ul { list-style:none; color:#888; font-size:0.88rem; line-height:2; }
+    .roadmap-content ul li::before { content:'✓ '; color:var(--green); }
+
+    /* FAQ */
+    .faq-section { background:rgba(0,0,0,0.2); }
+    .faq-list { max-width:800px; margin:0 auto; display:flex; flex-direction:column; gap:16px; }
+    .faq-item {
+      background:var(--card); border:1px solid rgba(255,255,255,0.05);
+      border-radius:16px; overflow:hidden; cursor:pointer;
+      transition: border-color 0.2s;
+    }
+    .faq-item:hover { border-color:rgba(0,212,255,0.3); }
+    .faq-q {
+      padding:20px 24px; font-weight:700; color:#fff;
+      display:flex; justify-content:space-between; align-items:center;
+      font-size:0.95rem;
+    }
+    .faq-q .arrow { color:var(--primary); transition:transform 0.3s; font-size:1.2rem; }
+    .faq-a { padding:0 24px; max-height:0; overflow:hidden; transition:max-height 0.3s ease, padding 0.3s; }
+    .faq-a.open { max-height:200px; padding:0 24px 20px; }
+    .faq-a p { color:#888; font-size:0.9rem; line-height:1.7; }
+
+    /* WHITEPAPER */
+    .whitepaper-section { background:rgba(123,47,255,0.05); border-top:1px solid rgba(123,47,255,0.15); }
+
+    /* HOW TO BUY */
+    .buy-section { background:rgba(13,13,43,0.6); }
+    .buy-steps { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:24px; }
+    .buy-step {
+      background:var(--card); border:1px solid rgba(0,212,255,0.1);
+      border-radius:16px; padding:28px; text-align:center; position:relative;
+      transition:all 0.3s;
+    }
+    .buy-step:hover { border-color:var(--primary); transform:translateY(-4px); }
+    .buy-step .step-n {
+      width:44px; height:44px; border-radius:50%;
+      background:linear-gradient(135deg, var(--primary), var(--secondary));
+      display:flex; align-items:center; justify-content:center;
+      font-size:1.2rem; font-weight:900; margin:0 auto 16px;
+    }
+    .buy-step h3 { font-size:1rem; font-weight:700; color:#fff; margin-bottom:8px; }
+    .buy-step p { font-size:0.85rem; color:#666; line-height:1.6; }
+
+    /* COMMUNITY */
+    .community-section { background:rgba(0,0,0,0.3); }
+    .social-grid { display:flex; gap:20px; justify-content:center; flex-wrap:wrap; }
+    .social-card {
+      background:var(--card); border:1px solid rgba(255,255,255,0.05);
+      border-radius:16px; padding:28px 36px; text-decoration:none;
+      text-align:center; min-width:160px; transition:all 0.3s;
+    }
+    .social-card:hover { border-color:var(--primary); transform:translateY(-4px); }
+    .social-card .icon { font-size:2.5rem; margin-bottom:10px; }
+    .social-card h4 { font-size:1rem; font-weight:700; color:#fff; }
+    .social-card p { font-size:0.8rem; color:#666; }
 
     /* FOOTER */
     footer {
-      background:var(--card);
-      border-top:1px solid rgba(255,255,255,0.05);
-      padding:40px 24px;
-      text-align:center;
-      position:relative;
-      z-index:1;
+      background:#030308; border-top:1px solid rgba(255,255,255,0.05);
+      text-align:center; padding:40px 20px;
     }
-    footer img { width:48px; height:48px; border-radius:50%; margin-bottom:12px; }
-    footer p { color:#444; font-size:0.85rem; line-height:2; }
+    footer img { width:48px; height:48px; border-radius:50%; margin-bottom:16px; }
+    footer p { font-size:0.85rem; color:#444; line-height:1.8; }
     footer a { color:var(--primary); text-decoration:none; }
+
+    /* ANIMATIONS */
+    .fade-in { opacity:0; transform:translateY(30px); transition:opacity 0.6s, transform 0.6s; }
+    .fade-in.visible { opacity:1; transform:translateY(0); }
 
     /* MOBILE */
     @media(max-width:768px) {
       .nav-links { display:none; }
-      .stats-bar { gap:24px; }
-    }
-
-    /* SCROLL ANIMATION */
-    .fade-in {
-      opacity:0;
-      transform:translateY(30px);
-      transition:opacity 0.6s ease, transform 0.6s ease;
-    }
-    .fade-in.visible {
-      opacity:1;
-      transform:translateY(0);
+      .hero h1 { font-size:2.5rem; }
+      .airdrop-box { padding:30px 20px; }
+      .roadmap::before { left:22px; }
     }
   </style>
 </head>
@@ -457,270 +333,255 @@
 
 <!-- NAVBAR -->
 <nav>
-  <div class="nav-logo">
-    <img src="logo.png" alt="NEXZ"/>
-    <span>NexZ</span>
-  </div>
-  <div class="nav-links">
-    <a href="#tokenomics">Tokenomics</a>
-    <a href="#airdrop">Airdrop</a>
-    <a href="#how-to-buy">How to Buy</a>
-    <a href="#roadmap">Roadmap</a>
-    <a href="https://pancakeswap.finance/swap?outputCurrency=0xdBF4b311d86b10d49670489f0e3AE8Aec3fbe7C9" target="_blank" class="nav-buy">Buy NEXZ</a>
+  <div class="nav-inner">
+    <a href="#" class="nav-logo">
+      <img src="logo.png" alt="NEXZ"/>
+      <span>NexZ</span>
+    </a>
+    <div class="nav-links">
+      <a href="#chart">Chart</a>
+      <a href="#tokenomics">Tokenomics</a>
+      <a href="#airdrop">Airdrop</a>
+      <a href="#security">Security</a>
+      <a href="#roadmap">Roadmap</a>
+      <a href="#faq">FAQ</a>
+      <a href="nexz_whitepaper.pdf" target="_blank">Whitepaper</a>
+      <a href="https://pancakeswap.finance/swap?outputCurrency=0xdBF4b311d86b10d49670489f0e3AE8Aec3fbe7C9" target="_blank" class="nav-buy">Buy NEXZ 🥞</a>
+    </div>
   </div>
 </nav>
 
+<!-- TICKER BAR -->
+<div class="ticker-bar">
+  <div class="ticker-content">
+    <span class="ticker-item"><span class="label">NEXZ/BNB</span><span class="value">LIVE</span></span>
+    <span class="ticker-item">✅ <span class="label">Buy Tax:</span><span class="green">0%</span></span>
+    <span class="ticker-item">✅ <span class="label">Sell Tax:</span><span class="green">0%</span></span>
+    <span class="ticker-item">🔒 <span class="label">LP Locked:</span><span class="value">1 Year</span></span>
+    <span class="ticker-item">🛡️ <span class="label">Honeypot:</span><span class="green">NO ✅</span></span>
+    <span class="ticker-item">✅ <span class="label">Contract:</span><span class="value">VERIFIED</span></span>
+    <span class="ticker-item">🎁 <span class="label">Airdrop:</span><span class="value">LIVE NOW</span></span>
+    <span class="ticker-item">💎 <span class="label">Supply:</span><span class="value">1 Quadrillion</span></span>
+    <!-- Duplicate for seamless loop -->
+    <span class="ticker-item"><span class="label">NEXZ/BNB</span><span class="value">LIVE</span></span>
+    <span class="ticker-item">✅ <span class="label">Buy Tax:</span><span class="green">0%</span></span>
+    <span class="ticker-item">✅ <span class="label">Sell Tax:</span><span class="green">0%</span></span>
+    <span class="ticker-item">🔒 <span class="label">LP Locked:</span><span class="value">1 Year</span></span>
+    <span class="ticker-item">🛡️ <span class="label">Honeypot:</span><span class="green">NO ✅</span></span>
+    <span class="ticker-item">✅ <span class="label">Contract:</span><span class="value">VERIFIED</span></span>
+    <span class="ticker-item">🎁 <span class="label">Airdrop:</span><span class="value">LIVE NOW</span></span>
+    <span class="ticker-item">💎 <span class="label">Supply:</span><span class="value">1 Quadrillion</span></span>
+  </div>
+</div>
+
 <!-- HERO -->
-<div class="hero">
-  <div class="hero-badge">🟢 LIVE ON BNB CHAIN</div>
-  <img src="logo.png" alt="NEXZ Logo" class="hero-logo"/>
-  <h1>NexZ Token</h1>
-  <p>The next generation community-driven token on BNB Chain. 0% tax, locked liquidity, verified & secure.</p>
-  <div class="hero-buttons">
-    <a href="https://pancakeswap.finance/swap?outputCurrency=0xdBF4b311d86b10d49670489f0e3AE8Aec3fbe7C9" target="_blank" class="btn-primary">🥞 Buy on PancakeSwap</a>
-    <a href="https://dexscreener.com/bsc/0xdBF4b311d86b10d49670489f0e3AE8Aec3fbe7C9" target="_blank" class="btn-secondary">📊 View Chart</a>
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-badge"><span class="dot"></span> LIVE on BNB Smart Chain</div>
+    <h1>NexZ Token<br/>The Next Generation</h1>
+    <p>Community-driven BEP-20 token with 0% tax, locked liquidity, and verified security.<br/>Built for the future of decentralized finance.</p>
+    <div class="hero-btns">
+      <a href="https://pancakeswap.finance/swap?outputCurrency=0xdBF4b311d86b10d49670489f0e3AE8Aec3fbe7C9" target="_blank" class="btn-primary">🥞 Buy on PancakeSwap</a>
+      <a href="#airdrop" class="btn-secondary">🎁 Join Airdrop</a>
+    </div>
+    <div class="contract-box">
+      <code>0xdBF4b311d86b10d49670489f0e3AE8Aec3fbe7C9</code>
+      <button class="copy-btn" onclick="copyContract()">Copy</button>
+    </div>
   </div>
+</section>
+
+<!-- STATS -->
+<div class="stats-row">
+  <div class="stat-card fade-in"><div class="num">1Q</div><div class="lbl">Total Supply</div></div>
+  <div class="stat-card fade-in"><div class="num" style="color:var(--green)">0%</div><div class="lbl">Buy / Sell Tax</div></div>
+  <div class="stat-card fade-in"><div class="num">1 Year</div><div class="lbl">LP Locked</div></div>
+  <div class="stat-card fade-in"><div class="num" style="color:var(--green)">✅</div><div class="lbl">Verified Contract</div></div>
+  <div class="stat-card fade-in"><div class="num" style="color:var(--gold)">BEP-20</div><div class="lbl">Token Standard</div></div>
 </div>
 
-<!-- STATS BAR -->
-<div class="stats-bar">
-  <div class="stat-item">
-    <div class="stat-label">Symbol</div>
-    <div class="stat-value">NEXZ</div>
+<!-- LIVE CHART -->
+<section class="chart-section" id="chart">
+  <div class="section-wrap">
+    <h2 class="section-title">📊 Live <span>Chart</span></h2>
+    <p class="section-sub">Real-time NEXZ/BNB price chart powered by DexScreener</p>
+    <div class="chart-embed-wrap fade-in">
+      <iframe src="https://dexscreener.com/bsc/0xdBF4b311d86b10d49670489f0e3AE8Aec3fbe7C9?embed=1&theme=dark&trades=1&info=0"
+        style="width:100%; height:500px; border:none;" loading="lazy"></iframe>
+    </div>
+    <div style="text-align:center; margin-top:20px;">
+      <a href="https://dexscreener.com/bsc/0xdBF4b311d86b10d49670489f0e3AE8Aec3fbe7C9" target="_blank" class="btn-secondary" style="display:inline-block; font-size:0.95rem; padding:12px 28px;">
+        View Full Chart on DexScreener ↗
+      </a>
+    </div>
   </div>
-  <div class="stat-item">
-    <div class="stat-label">Network</div>
-    <div class="stat-value">BNB Chain</div>
-  </div>
-  <div class="stat-item">
-    <div class="stat-label">Buy/Sell Tax</div>
-    <div class="stat-value green">0% / 0%</div>
-  </div>
-  <div class="stat-item">
-    <div class="stat-label">LP Lock</div>
-    <div class="stat-value green">1 YEAR ✅</div>
-  </div>
-  <div class="stat-item">
-    <div class="stat-label">Total Supply</div>
-    <div class="stat-value">1 Quadrillion</div>
-  </div>
-</div>
-
-<!-- CONTRACT -->
-<div class="contract-section fade-in">
-  <p style="color:#666;font-size:0.85rem;margin-bottom:12px;text-transform:uppercase;letter-spacing:1px;">Contract Address (BEP-20)</p>
-  <div class="contract-box">
-    <span id="contractAddr">0xdBF4b311d86b10d49670489f0e3AE8Aec3fbe7C9</span>
-    <button class="copy-btn" onclick="copyContract()">Copy</button>
-  </div>
-</div>
+</section>
 
 <!-- FEATURES -->
-<section id="features">
-  <div class="container">
-    <h2 class="section-title fade-in">Why <span>NexZ</span>?</h2>
-    <p class="section-subtitle fade-in">Built for the community, secured for the future</p>
+<section>
+  <div class="section-wrap">
+    <h2 class="section-title">Why <span>NEXZ</span>?</h2>
+    <p class="section-sub">Built with transparency, security, and community first</p>
     <div class="features-grid">
       <div class="feature-card fade-in">
-        <div class="feature-icon">💎</div>
-        <h3>0% Tax</h3>
-        <p>Zero buy and sell tax. Keep every token you earn. No hidden fees, ever.</p>
+        <div class="feature-icon">🚀</div>
+        <h3>0% Tax Forever</h3>
+        <p>No hidden fees. No buy tax. No sell tax. Keep 100% of what you trade. The fairest token on BNB Chain.</p>
       </div>
       <div class="feature-card fade-in">
         <div class="feature-icon">🔒</div>
         <h3>LP Locked 1 Year</h3>
-        <p>Liquidity is locked for 365 days on DxLock. Your investment is protected.</p>
-      </div>
-      <div class="feature-card fade-in">
-        <div class="feature-icon">✅</div>
-        <h3>Verified Contract</h3>
-        <p>Fully open-source and verified on BscScan. 100% transparent code.</p>
-      </div>
-      <div class="feature-card fade-in">
-        <div class="feature-icon">🌍</div>
-        <h3>Community Driven</h3>
-        <p>NexZ belongs to its holders. Join the growing community and shape the future.</p>
-      </div>
-      <div class="feature-card fade-in">
-        <div class="feature-icon">🚀</div>
-        <h3>Massive Supply</h3>
-        <p>1 Quadrillion tokens. Low price per token = massive upside potential.</p>
+        <p>Liquidity locked on DxLock for 365 days. No rug pull possible. Your investment is safe.</p>
       </div>
       <div class="feature-card fade-in">
         <div class="feature-icon">🛡️</div>
-        <h3>Not a Honeypot</h3>
-        <p>Verified safe by honeypot.is. Buy and sell freely anytime without restrictions.</p>
+        <h3>Verified & Safe</h3>
+        <p>Contract verified on BscScan. Honeypot.is confirmed safe. Open source code for full transparency.</p>
+      </div>
+      <div class="feature-card fade-in">
+        <div class="feature-icon">👥</div>
+        <h3>Community Driven</h3>
+        <p>90% of supply goes to community holders. Fair launch with no pre-sale or team allocation.</p>
+      </div>
+      <div class="feature-card fade-in">
+        <div class="feature-icon">⚡</div>
+        <h3>Instant Trading</h3>
+        <p>Trade instantly on PancakeSwap. Fast transactions on BNB Smart Chain. Low gas fees.</p>
+      </div>
+      <div class="feature-card fade-in">
+        <div class="feature-icon">🎁</div>
+        <h3>Active Airdrop</h3>
+        <p>1 Billion NEXZ being given away to 1000 lucky winners. Join now before it ends!</p>
       </div>
     </div>
   </div>
 </section>
 
 <!-- TOKENOMICS -->
-<section id="tokenomics" style="background:rgba(13,13,43,0.5);">
-  <div class="container">
-    <h2 class="section-title fade-in">Token<span>omics</span></h2>
-    <p class="section-subtitle fade-in">Simple, transparent, community-first</p>
-    <div class="tokenomics-grid">
-      <div class="token-card fade-in">
-        <div class="number">1Q</div>
-        <div class="label">Total Supply<br/>1,000,000,000,000,000</div>
-      </div>
-      <div class="token-card fade-in">
-        <div class="number">0%</div>
-        <div class="label">Buy Tax<br/>No fees on purchase</div>
-      </div>
-      <div class="token-card fade-in">
-        <div class="number">0%</div>
-        <div class="label">Sell Tax<br/>No fees on sell</div>
-      </div>
-      <div class="token-card fade-in">
-        <div class="number">18</div>
-        <div class="label">Decimals<br/>Standard BEP-20</div>
-      </div>
-      <div class="token-card fade-in">
-        <div class="number">1Y</div>
-        <div class="label">LP Lock Duration<br/>Mar 2027</div>
-      </div>
-      <div class="token-card fade-in">
-        <div class="number">BNB</div>
-        <div class="label">Network<br/>BNB Smart Chain</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- SECURITY -->
-<section id="security">
-  <div class="container">
-    <h2 class="section-title fade-in">🛡️ <span>Security</span> Verified</h2>
-    <p class="section-subtitle fade-in">Audited and verified - safe to trade</p>
-    <div class="security-grid">
-      <div class="security-item fade-in">
-        <div class="check">✅</div>
-        <h4>No Honeypot</h4>
-        <p>Verified by honeypot.is</p>
-      </div>
-      <div class="security-item fade-in">
-        <div class="check">✅</div>
-        <h4>0% Buy Tax</h4>
-        <p>Confirmed on-chain</p>
-      </div>
-      <div class="security-item fade-in">
-        <div class="check">✅</div>
-        <h4>0% Sell Tax</h4>
-        <p>No hidden tax</p>
-      </div>
-      <div class="security-item fade-in">
-        <div class="check">✅</div>
-        <h4>Open Source</h4>
-        <p>Verified on BscScan</p>
-      </div>
-      <div class="security-item fade-in">
-        <div class="check">✅</div>
-        <h4>LP Locked</h4>
-        <p>DxLock - 1 Year</p>
-      </div>
-      <div class="security-item fade-in">
-        <div class="check">✅</div>
-        <h4>No Mint Function</h4>
-        <p>Supply is fixed forever</p>
-      </div>
-    </div>
+<section class="tokenomics-section" id="tokenomics">
+  <div class="section-wrap">
+    <h2 class="section-title">📊 <span>Tokenomics</span></h2>
+    <p class="section-sub">Fair and transparent distribution — community comes first</p>
+    <img src="nexz_tokenomics.png" alt="NEXZ Tokenomics" class="tokenomics-img fade-in"/>
   </div>
 </section>
 
 <!-- AIRDROP -->
-<section id="airdrop" style="background:rgba(13,13,43,0.5);">
-  <div class="container">
-    <h2 class="section-title fade-in">🎁 <span>Airdrop</span> Campaign</h2>
-    <p class="section-subtitle fade-in">Free NEXZ tokens for early supporters!</p>
-    <div class="airdrop-section fade-in">
-      <h2>Claim Free NEXZ Tokens!</h2>
-      <p>Join the NexZ community early and receive free tokens. Follow the steps below to participate in our ongoing airdrop campaign.</p>
-      <div class="airdrop-steps">
-        <div class="airdrop-step">
-          <div class="step-num">1</div>
-          <span>Follow <a href="https://x.com/BNBNEXZ" target="_blank" style="color:var(--primary)">@BNBNEXZ</a> on Twitter/X</span>
-        </div>
-        <div class="airdrop-step">
-          <div class="step-num">2</div>
-          <span>Like & Retweet our pinned tweet</span>
-        </div>
-        <div class="airdrop-step">
-          <div class="step-num">3</div>
-          <span>Join our <a href="https://t.me/NEXZBNBChain" target="_blank" style="color:var(--primary)">Telegram community</a></span>
-        </div>
-        <div class="airdrop-step">
-          <div class="step-num">4</div>
-          <span>Comment your BNB wallet address</span>
-        </div>
+<section class="airdrop-section" id="airdrop">
+  <div class="section-wrap">
+    <div class="airdrop-box fade-in">
+      <div style="font-size:3rem; margin-bottom:16px;">🎁</div>
+      <h2>NEXZ Airdrop Campaign</h2>
+      <p class="prize">1,000,000,000 NEXZ Total Prize Pool</p>
+      <div class="countdown-wrap">
+        <div class="count-box"><span class="count-num" id="days">07</span><div class="count-lbl">DAYS</div></div>
+        <div class="count-box"><span class="count-num" id="hours">00</span><div class="count-lbl">HOURS</div></div>
+        <div class="count-box"><span class="count-num" id="mins">00</span><div class="count-lbl">MINS</div></div>
+        <div class="count-box"><span class="count-num" id="secs">00</span><div class="count-lbl">SECS</div></div>
       </div>
-      <a href="https://x.com/BNBNEXZ" target="_blank" class="btn-primary">🎁 Join Airdrop Now</a>
+      <p style="color:#aaa; margin-bottom:24px;">🏆 1,000,000 NEXZ per winner &nbsp;|&nbsp; 1000 Winners &nbsp;|&nbsp; Limited Time!</p>
+      <div class="steps-grid">
+        <div class="step-item"><div class="step-num">1</div>Follow @BNBNEXZ on Twitter</div>
+        <div class="step-item"><div class="step-num">2</div>Retweet the pinned post</div>
+        <div class="step-item"><div class="step-num">3</div>Comment your BNB wallet</div>
+        <div class="step-item"><div class="step-num">4</div>Tag 2 crypto friends</div>
+      </div>
+      <a href="https://x.com/BNBNEXZ" target="_blank" class="btn-primary" style="display:inline-block; margin-top:28px;">
+        🐦 Join Airdrop on Twitter
+      </a>
     </div>
   </div>
 </section>
 
 <!-- HOW TO BUY -->
-<section id="how-to-buy">
-  <div class="container">
-    <h2 class="section-title fade-in">How to <span>Buy</span></h2>
-    <p class="section-subtitle fade-in">Get your NEXZ tokens in 4 easy steps</p>
+<section class="buy-section" id="buy">
+  <div class="section-wrap">
+    <h2 class="section-title">How to <span>Buy NEXZ</span></h2>
+    <p class="section-sub">4 easy steps to get your NEXZ tokens</p>
     <div class="buy-steps">
       <div class="buy-step fade-in">
-        <div class="buy-step-num">1</div>
-        <h4>Get a Wallet</h4>
-        <p>Download MetaMask or Trust Wallet. Add BNB Smart Chain network (Chain ID: 56).</p>
+        <div class="step-n">1</div>
+        <h3>Install MetaMask</h3>
+        <p>Download MetaMask browser extension or app. Create a new wallet and secure your seed phrase.</p>
       </div>
       <div class="buy-step fade-in">
-        <div class="buy-step-num">2</div>
-        <h4>Buy BNB</h4>
-        <p>Purchase BNB from any exchange (Binance, MEXC, etc.) and send to your wallet.</p>
+        <div class="step-n">2</div>
+        <h3>Add BNB Smart Chain</h3>
+        <p>Add BSC network to MetaMask. Chain ID: 56, RPC: https://bsc-dataseed.binance.org/</p>
       </div>
       <div class="buy-step fade-in">
-        <div class="buy-step-num">3</div>
-        <h4>Connect to PancakeSwap</h4>
-        <p>Go to PancakeSwap, connect your wallet, paste the NEXZ contract address. Set slippage to 12-15%.</p>
+        <div class="step-n">3</div>
+        <h3>Buy BNB</h3>
+        <p>Purchase BNB from any exchange and send to your MetaMask wallet address.</p>
       </div>
       <div class="buy-step fade-in">
-        <div class="buy-step-num">4</div>
-        <h4>Swap & HODL! 🚀</h4>
-        <p>Swap BNB for NEXZ. You're now part of the community! Track on DexScreener.</p>
+        <div class="step-n">4</div>
+        <h3>Swap on PancakeSwap</h3>
+        <p>Go to PancakeSwap, paste NEXZ contract address, set 12% slippage, and swap!</p>
       </div>
     </div>
-    <div style="text-align:center;margin-top:40px;" class="fade-in">
-      <a href="https://pancakeswap.finance/swap?outputCurrency=0xdBF4b311d86b10d49670489f0e3AE8Aec3fbe7C9" target="_blank" class="btn-primary" style="font-size:1.2rem;padding:18px 48px;">🥞 Buy NEXZ Now</a>
+    <div style="text-align:center; margin-top:40px;">
+      <a href="https://pancakeswap.finance/swap?outputCurrency=0xdBF4b311d86b10d49670489f0e3AE8Aec3fbe7C9" target="_blank" class="btn-primary">
+        🥞 Buy Now on PancakeSwap
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- SECURITY -->
+<section class="security-section" id="security">
+  <div class="section-wrap">
+    <h2 class="section-title">🛡️ <span>Security</span> Verified</h2>
+    <p class="section-sub">100% safe — verified by multiple independent scanners</p>
+    <div class="security-grid">
+      <div class="sec-item fade-in"><div class="check">🟢</div><h4>Not a Honeypot</h4><p>Confirmed by honeypot.is</p></div>
+      <div class="sec-item fade-in"><div class="check">🟢</div><h4>0% Buy Tax</h4><p>No hidden fees</p></div>
+      <div class="sec-item fade-in"><div class="check">🟢</div><h4>0% Sell Tax</h4><p>Sell anytime freely</p></div>
+      <div class="sec-item fade-in"><div class="check">🟢</div><h4>No Buy Limit</h4><p>Buy any amount</p></div>
+      <div class="sec-item fade-in"><div class="check">🟢</div><h4>No Sell Limit</h4><p>Sell any amount</p></div>
+      <div class="sec-item fade-in"><div class="check">🟢</div><h4>Open Source</h4><p>Fully transparent code</p></div>
+      <div class="sec-item fade-in"><div class="check">🔒</div><h4>LP Locked</h4><p>1 year on DxLock</p></div>
+      <div class="sec-item fade-in"><div class="check">✅</div><h4>BscScan Verified</h4><p>Contract published</p></div>
+    </div>
+    <div class="sec-links">
+      <a href="https://honeypot.is/?address=0xdBF4b311d86b10d49670489f0e3AE8Aec3fbe7C9" target="_blank" class="sec-link">🔍 Honeypot.is Check</a>
+      <a href="https://bscscan.com/token/0xdBF4b311d86b10d49670489f0e3AE8Aec3fbe7C9" target="_blank" class="sec-link">🔎 BscScan Contract</a>
+      <a href="https://dx.app/dxlock" target="_blank" class="sec-link">🔒 LP Lock Proof</a>
+      <a href="https://dexscreener.com/bsc/0xdBF4b311d86b10d49670489f0e3AE8Aec3fbe7C9" target="_blank" class="sec-link">📊 DexScreener</a>
     </div>
   </div>
 </section>
 
 <!-- ROADMAP -->
-<section id="roadmap" style="background:rgba(13,13,43,0.5);">
-  <div class="container">
-    <h2 class="section-title fade-in">Road<span>map</span></h2>
-    <p class="section-subtitle fade-in">Our journey to the moon 🚀</p>
+<section class="roadmap-section" id="roadmap">
+  <div class="section-wrap">
+    <h2 class="section-title">🗺️ <span>Roadmap</span></h2>
+    <p class="section-sub">Our journey to the top</p>
     <div class="roadmap">
       <div class="roadmap-item fade-in">
-        <div class="roadmap-dot">🚀</div>
+        <div class="roadmap-dot done">✅</div>
         <div class="roadmap-content">
-          <h4>Phase 1 - Launch ✅ COMPLETED</h4>
+          <h4>Q1 2026 — Launch Phase ✅ COMPLETED</h4>
           <ul>
-            <li>Token deployment on BNB Chain</li>
+            <li>Token deployment on BNB Smart Chain</li>
             <li>Contract verified on BscScan</li>
-            <li>Liquidity added & locked 1 year</li>
-            <li>Listed on DexScreener & CoinSniper</li>
-            <li>Website launched</li>
+            <li>PancakeSwap trading live</li>
+            <li>LP locked 1 year on DxLock</li>
+            <li>Official website launched</li>
+            <li>Whitepaper published</li>
           </ul>
         </div>
       </div>
       <div class="roadmap-item fade-in">
         <div class="roadmap-dot">🌱</div>
         <div class="roadmap-content">
-          <h4>Phase 2 - Community Growth 🔄 IN PROGRESS</h4>
+          <h4>Q2 2026 — Growth Phase</h4>
           <ul>
-            <li>Airdrop campaign - 1000+ participants</li>
-            <li>500+ holders target</li>
-            <li>CoinGecko & CoinMarketCap listing</li>
-            <li>Telegram & Twitter community growth</li>
+            <li>CoinGecko listing</li>
+            <li>CoinMarketCap listing</li>
+            <li>500+ token holders</li>
+            <li>$10,000+ liquidity</li>
+            <li>Community airdrop completion</li>
             <li>DEXTools listing</li>
           </ul>
         </div>
@@ -728,25 +589,26 @@
       <div class="roadmap-item fade-in">
         <div class="roadmap-dot">📈</div>
         <div class="roadmap-content">
-          <h4>Phase 3 - Exchange Listings</h4>
+          <h4>Q3 2026 — Expansion Phase</h4>
           <ul>
-            <li>MEXC Exchange listing</li>
-            <li>LBank Exchange listing</li>
-            <li>1000+ holders</li>
-            <li>$10K+ daily trading volume</li>
-            <li>Influencer partnerships</li>
+            <li>MEXC / LBank exchange listing</li>
+            <li>5,000+ token holders</li>
+            <li>$50,000+ daily volume</li>
+            <li>KOL marketing campaigns</li>
+            <li>Trust Wallet price display</li>
           </ul>
         </div>
       </div>
       <div class="roadmap-item fade-in">
         <div class="roadmap-dot">🏆</div>
         <div class="roadmap-content">
-          <h4>Phase 4 - Major Growth</h4>
+          <h4>Q4 2026 — Peak Phase</h4>
           <ul>
-            <li>Top-tier exchange listings</li>
-            <li>10,000+ holder community</li>
-            <li>NexZ ecosystem development</li>
-            <li>Strategic partnerships</li>
+            <li>Major exchange listing (Binance/Gate.io)</li>
+            <li>10,000+ token holders</li>
+            <li>$1,000,000+ market cap recognition</li>
+            <li>Futures trading enabled</li>
+            <li>NEXZ 2.0 ecosystem launch</li>
           </ul>
         </div>
       </div>
@@ -754,31 +616,86 @@
   </div>
 </section>
 
+<!-- FAQ -->
+<section class="faq-section" id="faq">
+  <div class="section-wrap">
+    <h2 class="section-title">❓ <span>FAQ</span></h2>
+    <p class="section-sub">Everything you need to know about NEXZ</p>
+    <div class="faq-list">
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q">What is NexZ (NEXZ)? <span class="arrow">+</span></div>
+        <div class="faq-a"><p>NexZ (NEXZ) is a community-driven BEP-20 token on BNB Smart Chain. It features 0% buy/sell tax, locked liquidity, and verified smart contract. Total supply is 1 quadrillion NEXZ.</p></div>
+      </div>
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q">Is NEXZ safe? Is it a honeypot? <span class="arrow">+</span></div>
+        <div class="faq-a"><p>NEXZ is 100% safe and NOT a honeypot. Verified independently by honeypot.is. 0% buy tax, 0% sell tax, no hidden fees. You can buy and sell freely at any time. Contract is open source and verified on BscScan.</p></div>
+      </div>
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q">How do I buy NEXZ? <span class="arrow">+</span></div>
+        <div class="faq-a"><p>Use MetaMask wallet + PancakeSwap. Set slippage to 12-15%. Search for NEXZ or paste contract address: 0xdBF4b311d86b10d49670489f0e3AE8Aec3fbe7C9. Swap BNB for NEXZ instantly!</p></div>
+      </div>
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q">Is the liquidity locked? <span class="arrow">+</span></div>
+        <div class="faq-a"><p>Yes! Liquidity is locked for 1 full year on DxLock. This means the developer cannot remove liquidity or rug pull. Your investment is safe from LP manipulation.</p></div>
+      </div>
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q">How do I join the airdrop? <span class="arrow">+</span></div>
+        <div class="faq-a"><p>Follow @BNBNEXZ on Twitter, retweet the pinned post, comment your BNB wallet address, and tag 2 friends. 1000 winners will each receive 1,000,000 NEXZ tokens!</p></div>
+      </div>
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q">Why does Trust Wallet show $0? <span class="arrow">+</span></div>
+        <div class="faq-a"><p>Trust Wallet shows $0 until the token is listed on CoinGecko or CoinMarketCap. We are actively applying for listing. Your NEXZ tokens are safe and trading is active on PancakeSwap.</p></div>
+      </div>
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q">What wallet should I use? <span class="arrow">+</span></div>
+        <div class="faq-a"><p>MetaMask is recommended for best experience on PancakeSwap. Trust Wallet also works but use the PancakeSwap website via browser. Set slippage to 12-15% for smooth transactions.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHITEPAPER -->
+<section class="whitepaper-section" id="whitepaper">
+  <div class="section-wrap" style="text-align:center;">
+    <h2 class="section-title">📄 Official <span>Whitepaper</span></h2>
+    <p class="section-sub">Read our full vision, tokenomics, technology and roadmap</p>
+    <a href="nexz_whitepaper.pdf" download class="btn-primary" style="display:inline-block; margin-bottom:16px;">
+      📥 Download Whitepaper (PDF)
+    </a>
+    <p style="color:#555; font-size:0.85rem;">Version 1.0 | March 2026 | BNB Smart Chain</p>
+  </div>
+</section>
+
 <!-- COMMUNITY -->
-<section id="community">
-  <div class="container">
-    <h2 class="section-title fade-in">Join the <span>Community</span></h2>
-    <p class="section-subtitle fade-in">Connect with NexZ holders worldwide</p>
-    <div class="social-grid fade-in">
-      <a href="https://t.me/NEXZBNBChain" target="_blank" class="social-btn">
-        <span style="font-size:1.5rem">📣</span>
-        <span>Telegram</span>
+<section class="community-section">
+  <div class="section-wrap">
+    <h2 class="section-title">🌍 <span>Community</span></h2>
+    <p class="section-sub">Join our growing global community</p>
+    <div class="social-grid">
+      <a href="https://x.com/BNBNEXZ" target="_blank" class="social-card">
+        <div class="icon">🐦</div>
+        <h4>Twitter</h4>
+        <p>@BNBNEXZ</p>
       </a>
-      <a href="https://x.com/BNBNEXZ" target="_blank" class="social-btn">
-        <span style="font-size:1.5rem">🐦</span>
-        <span>Twitter / X</span>
+      <a href="https://t.me/NEXZBNBChain" target="_blank" class="social-card">
+        <div class="icon">💬</div>
+        <h4>Telegram</h4>
+        <p>@NEXZBNBChain</p>
       </a>
-      <a href="https://bscscan.com/token/0xdBF4b311d86b10d49670489f0e3AE8Aec3fbe7C9" target="_blank" class="social-btn">
-        <span style="font-size:1.5rem">🔍</span>
-        <span>BscScan</span>
+      <a href="https://dexscreener.com/bsc/0xdBF4b311d86b10d49670489f0e3AE8Aec3fbe7C9" target="_blank" class="social-card">
+        <div class="icon">📊</div>
+        <h4>DexScreener</h4>
+        <p>Live Chart</p>
       </a>
-      <a href="https://dexscreener.com/bsc/0xdBF4b311d86b10d49670489f0e3AE8Aec3fbe7C9" target="_blank" class="social-btn">
-        <span style="font-size:1.5rem">📊</span>
-        <span>DexScreener</span>
+      <a href="https://bscscan.com/token/0xdBF4b311d86b10d49670489f0e3AE8Aec3fbe7C9" target="_blank" class="social-card">
+        <div class="icon">🔍</div>
+        <h4>BscScan</h4>
+        <p>Contract</p>
       </a>
-      <a href="https://pancakeswap.finance/swap?outputCurrency=0xdBF4b311d86b10d49670489f0e3AE8Aec3fbe7C9" target="_blank" class="social-btn">
-        <span style="font-size:1.5rem">🥞</span>
-        <span>PancakeSwap</span>
+      <a href="https://pancakeswap.finance/swap?outputCurrency=0xdBF4b311d86b10d49670489f0e3AE8Aec3fbe7C9" target="_blank" class="social-card">
+        <div class="icon">🥞</div>
+        <h4>PancakeSwap</h4>
+        <p>Buy NEXZ</p>
       </a>
     </div>
   </div>
@@ -786,10 +703,10 @@
 
 <!-- FOOTER -->
 <footer>
-  <img src="logo.png" alt="NEXZ"/>
+  <img src="logo.png" alt="NexZ"/>
   <p>
     <strong style="color:#fff">NexZ Token (NEXZ)</strong><br/>
-    BNB Smart Chain | Contract: <a href="https://bscscan.com/token/0xdBF4b311d86b10d49670489f0e3AE8Aec3fbe7C9" target="_blank">0xdBF4b311d86b10d49670489f0e3AE8Aec3fbe7C9</a><br/><br/>
+    BNB Smart Chain &nbsp;|&nbsp; Contract: <a href="https://bscscan.com/token/0xdBF4b311d86b10d49670489f0e3AE8Aec3fbe7C9" target="_blank">0xdBF4b311d86b10d49670489f0e3AE8Aec3fbe7C9</a><br/><br/>
     ⚠️ Cryptocurrency investments carry high risk. This is not financial advice. Always DYOR.<br/><br/>
     © 2026 NexZ Token. All rights reserved.
   </p>
@@ -804,28 +721,40 @@
     setTimeout(() => btn.textContent = 'Copy', 2000);
   }
 
+  // FAQ toggle
+  function toggleFaq(el) {
+    const a = el.querySelector('.faq-a');
+    const arrow = el.querySelector('.arrow');
+    const isOpen = a.classList.contains('open');
+    document.querySelectorAll('.faq-a').forEach(x => x.classList.remove('open'));
+    document.querySelectorAll('.arrow').forEach(x => x.textContent = '+');
+    if (!isOpen) { a.classList.add('open'); arrow.textContent = '−'; }
+  }
+
+  // Countdown timer (7 days from load)
+  const end = new Date();
+  end.setDate(end.getDate() + 7);
+  function updateCountdown() {
+    const now = new Date();
+    const diff = end - now;
+    if (diff <= 0) return;
+    const d = Math.floor(diff / 86400000);
+    const h = Math.floor((diff % 86400000) / 3600000);
+    const m = Math.floor((diff % 3600000) / 60000);
+    const s = Math.floor((diff % 60000) / 1000);
+    document.getElementById('days').textContent = String(d).padStart(2,'0');
+    document.getElementById('hours').textContent = String(h).padStart(2,'0');
+    document.getElementById('mins').textContent = String(m).padStart(2,'0');
+    document.getElementById('secs').textContent = String(s).padStart(2,'0');
+  }
+  setInterval(updateCountdown, 1000);
+  updateCountdown();
+
   // Scroll animations
   const observer = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if(e.isIntersecting) {
-        e.target.classList.add('visible');
-      }
-    });
+    entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
   }, { threshold: 0.1 });
   document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 </script>
-
-<!-- WHITEPAPER SECTION -->
-<section id="whitepaper" style="padding:60px 0; background:rgba(0,0,0,0.3);">
-  <div style="max-width:900px;margin:0 auto;padding:0 20px;text-align:center;">
-    <h2 style="font-size:2rem;font-weight:800;color:#00d4ff;margin-bottom:12px;">Official Whitepaper</h2>
-    <p style="color:#888;margin-bottom:32px;">Read the full NexZ whitepaper to understand our vision, tokenomics, roadmap, and security features.</p>
-    <a href="nexz_whitepaper.pdf" download style="display:inline-flex;align-items:center;gap:10px;background:linear-gradient(135deg,#00d4ff,#7b2fff);color:#fff;font-weight:700;font-size:1.1rem;padding:16px 36px;border-radius:50px;text-decoration:none;box-shadow:0 0 30px rgba(0,212,255,0.4);">
-      📄 Download Whitepaper (PDF)
-    </a>
-    <p style="color:#555;font-size:0.8rem;margin-top:16px;">Version 1.0 | March 2026 | BNB Smart Chain</p>
-  </div>
-</section>
-
 </body>
 </html>
